@@ -1,13 +1,13 @@
 from django import template
 
-from cobranding.brands import filter_by_cobrand
+from partitions import chop
 
 
 register = template.Library()
 
 
-class CobrandFilterNode(template.Node):
-
+class PartitionNode(template.Node):
+    
     @classmethod
     def handle_token(cls, parser, token):
         bits = token.split_contents()
@@ -17,29 +17,28 @@ class CobrandFilterNode(template.Node):
             raise template.TemplateSyntaxError("Invalid arguments.")
         return cls(
             queryset = bits[1],
-            hostname = bits[3]
+            key = bits[3]
         )
-
-    def __init__(self, queryset, hostname):
+    
+    def __init__(self, queryset, key):
         self.queryset = template.Variable(queryset)
-        self.hostname = template.Variable(hostname)
-
+        self.key = template.Variable(key)
+    
     def render(self, context):
         var_name = self.queryset.var
         queryset = self.queryset.resolve(context)
-        hostname = self.hostname.resolve(context)
-
-        context[var_name] = filter_by_cobrand(queryset, hostname)
+        key = self.key.resolve(context)
+        context[var_name] = chop(queryset, key)
         return ""
 
 
 @register.tag
-def cobrand_filter(parser, token):
+def partition(parser, token):
     """
     Usage::
-        {% cobrand_filter queryset using request.get_host %}
-
-    Filters the queryset by the given hostname using rules defined in
-    cobranding.brands.registry
+        {% partition queryset using request.get_host %}
+    
+    Filters the queryset by using rules defined in
+    partitions.registry and indexed by the key provided.
     """
-    return CobrandFilterNode.handle_token(parser, token)
+    return PartitionNode.handle_token(parser, token)

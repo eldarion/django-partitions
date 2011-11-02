@@ -103,12 +103,12 @@ def find_package_data(
     return out
 
 
-PACKAGE = "cobranding"
-NAME = "cobranding"
-DESCRIPTION = "a app for cobrand filtering"
+PACKAGE = "partitions"
+NAME = "django-partitions"
+DESCRIPTION = "an app for partitions querysets based on indexed Q expressions in settings"
 AUTHOR = "Eldarion"
-AUTHOR_EMAIL = "paltman@eldarion.com"
-URL = "http://github.com/eldarion/kaleo"
+AUTHOR_EMAIL = "developers@eldarion.com"
+URL = "http://github.com/eldarion/django-partitions"
 VERSION = __import__(PACKAGE).__version__
 
 
