@@ -20,6 +20,5 @@ Contents
  changelog
  installation
  templatetags
- settings
  usage
  

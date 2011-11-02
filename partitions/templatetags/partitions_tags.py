@@ -1,6 +1,6 @@
 from django import template
 
-from partitions import chop
+from partitions.utils import chop
 
 
 register = template.Library()

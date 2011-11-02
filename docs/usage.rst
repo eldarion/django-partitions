@@ -10,7 +10,7 @@ register function::
 
     from django.db.models import Q
     
-    from partitions import register
+    from partitions.registry import register
     
     
     register("partner-a.mycompany.com", "products.Product", Q(partner__slug="partner-a"))
@@ -35,7 +35,7 @@ function directly::
 
     from products.models import Product
     
-    from partitions import chop
+    from partitions.utils import chop
     
     
     def product_list(request):
