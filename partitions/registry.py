@@ -18,7 +18,11 @@ class Registry(object):
         if app_model.split(".")[0] not in settings.INSTALLED_APPS:
             raise Exception("'%s' is not in INSTALLED_APPS" % app_model.split(".")[0])
         
-        self._partitions[key].update({app_model: expression})
+        self._partitions.update({
+            key: {
+                app_model: expression
+            }
+        })
     
     def expression_for(self, key, app_model):
         return self._partitions.get(key, {}).get(app_model)
