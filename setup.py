@@ -105,7 +105,7 @@ def find_package_data(
 
 PACKAGE = "partitions"
 NAME = "django-partitions"
-DESCRIPTION = "an app for partitions querysets based on indexed Q expressions in settings"
+DESCRIPTION = "an app for partitioning querysets based on indexed Q expressions in settings"
 AUTHOR = "Eldarion"
 AUTHOR_EMAIL = "developers@eldarion.com"
 URL = "http://github.com/eldarion/django-partitions"
