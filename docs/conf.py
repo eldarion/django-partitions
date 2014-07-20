@@ -1,4 +1,5 @@
-import sys, os
+import os
+import sys
 
 extensions = []
 templates_path = []
@@ -11,14 +12,12 @@ exclude_patterns = ['_build']
 pygments_style = 'sphinx'
 html_theme = 'default'
 htmlhelp_basename = '%sdoc' % package
-latex_documents = [
-  ('index', '%s.tex' % package, u'%s Documentation' % package,
-   u'Eldarion', 'manual'),
-]
-man_pages = [
-    ('index', package, u'%s Documentation' % package,
-     [u'Eldarion'], 1)
-]
+latex_documents = [(
+    'index', '%s.tex' % package, u'%s Documentation' % package, u'Eldarion', 'manual'
+)]
+man_pages = [(
+    'index', package, u'%s Documentation' % package, [u'Eldarion'], 1
+)]
 
 sys.path.insert(0, os.pardir)
 m = __import__(package)
